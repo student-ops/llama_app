@@ -12,7 +12,7 @@ if os.path.exists("docs.pkl"):
         docs = pickle.load(f)
 
 if docs is None:
-    github_client = GithubClient(os.getenv("GITHUB_TOKEN"))
+    github_client = GithubClient(os.getenv("GITHU_TOKEN"))
     loader = GithubRepositoryReader(
         github_client,
         owner =                  "jerryjliu",
