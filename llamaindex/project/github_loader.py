@@ -1,6 +1,6 @@
 import pickle
 import os
-import date
+from datetime import datetime 
 
 from llama_index import download_loader, GPTVectorStoreIndex
 download_loader("GithubRepositoryReader")
