@@ -1,5 +1,6 @@
 import pickle
 import os
+import date
 
 from llama_index import download_loader, GPTVectorStoreIndex
 download_loader("GithubRepositoryReader")
@@ -8,6 +9,9 @@ from llama_index.readers.llamahub_modules.github_repo import GithubClient, Githu
 
 docs = None
 if os.path.exists("docs.pkl"):
+    current_datetime = datetime.now()
+    with open('pkl_update_log.txt', 'a') as f:
+        f.write(str(current_datetime) + '\n')
     with open("docs.pkl", "rb") as f:
         docs = pickle.load(f)
 
