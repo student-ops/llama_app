@@ -15,10 +15,10 @@ if docs is None:
     github_client = GithubClient(os.getenv("GITHU_TOKEN"))
     loader = GithubRepositoryReader(
         github_client,
-        owner =                  "jerryjliu",
-        repo =                   "llama_index",
-        filter_directories =     (["gpt_index", "docs"], GithubRepositoryReader.FilterType.INCLUDE),
-        filter_file_extensions = ([".py"], GithubRepositoryReader.FilterType.INCLUDE),
+        owner =                  "student-ops",
+        repo =                   "raspy",
+        filter_directories =     ([""], GithubRepositoryReader.FilterType.INCLUDE),
+        filter_file_extensions = ([".py",".go",], GithubRepositoryReader.FilterType.INCLUDE),
         verbose =                True,
         concurrent_requests =    10,
     )
@@ -30,6 +30,6 @@ if docs is None:
 
 index = GPTVectorStoreIndex.from_documents(docs)
 query_engine = index.as_query_engine()
-response = query_engine.query("Explain each LlamaIndex class?")
+response = query_engine.query("このレポジトリについて簡単に説明して")
 # response = index.query("Explain each LlamaIndex class?")
 print(response)
