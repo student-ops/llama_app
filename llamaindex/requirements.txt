@@ -1,5 +1,6 @@
 aiohttp==3.8.4
 aiosignal==1.3.1
+anyio==3.7.0
 async-timeout==4.0.2
 attrs==23.1.0
 blinker==1.4
@@ -11,10 +12,14 @@ dataclasses-json==0.5.7
 dbus-python==1.2.18
 distro==1.7.0
 distro-info===1.1build1
+exceptiongroup==1.1.1
 frozenlist==1.3.3
 fsspec==2023.5.0
 greenlet==2.0.2
+h11==0.14.0
+httpcore==0.17.2
 httplib2==0.20.2
+httpx==0.24.1
 idna==3.4
 importlib-metadata==4.6.4
 jeepney==0.7.1
@@ -43,12 +48,14 @@ PyJWT==2.3.0
 pyparsing==2.4.7
 python-apt==2.4.0+ubuntu1
 python-dateutil==2.8.2
+python-dotenv==1.0.0
 pytz==2023.3
 PyYAML==5.4.1
 regex==2023.5.5
-requests==2.31.0
+requests==2.29.0
 SecretStorage==3.3.1
 six==1.16.0
+sniffio==1.3.0
 SQLAlchemy==2.0.15
 systemd-python==234
 tenacity==8.2.2
