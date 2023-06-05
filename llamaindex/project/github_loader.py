@@ -16,24 +16,24 @@ if os.path.exists("docs.pkl"):
         docs = pickle.load(f)
 
 if docs is None:
-    github_client = GithubClient(os.getenv("GITHU_ACCESS_TOKEN"))
+    github_client = GithubClient(os.getenv("GITHUB_TOKEN"))
     loader = GithubRepositoryReader(
         github_client,
         owner =                  "student-ops",
-        repo =                   "raspy",
-        filter_directories =     ([""], GithubRepositoryReader.FilterType.INCLUDE),
-        filter_file_extensions = ([".py",".go",], GithubRepositoryReader.FilterType.INCLUDE),
+        repo =                   "raspi_go_TE",
+        filter_directories =     (["python","go_serial"], GithubRepositoryReader.FilterType.INCLUDE),
+        filter_file_extensions = ([".py",".go"], GithubRepositoryReader.FilterType.INCLUDE),
         verbose =                True,
         concurrent_requests =    10,
     )
 
-    docs = loader.load_data(branch="main")
+    docs = loader.load_data(branch="master")
 
     with open("docs.pkl", "wb") as f:
         pickle.dump(docs, f)
 
 index = GPTVectorStoreIndex.from_documents(docs)
 query_engine = index.as_query_engine()
-response = query_engine.query("このレポジトリについて簡単に説明して")
+response = query_engine.query("このレポジトリではgoはどのように使用されていますか簡単に説明して")
 # response = index.query("Explain each LlamaIndex class?")
 print(response)
