@@ -1,4 +1,3 @@
-from llama_index.readers.llamahub_modules.github_repo import GithubClient, GithubRepositoryReader
 import pickle
 import os
 from datetime import datetime
@@ -9,32 +8,42 @@ from langchain.chat_models import ChatOpenAI
 from langchain.memory import ConversationSummaryBufferMemory
 
 from llama_index import download_loader, GPTVectorStoreIndex
+
 download_loader("GithubRepositoryReader")
+from llama_hub.github_repo import GithubClient, GithubRepositoryReader
 
 
 docs = None
 if os.path.exists("docs.pkl"):
     print("docs is exit")
     current_datetime = datetime.now()
-    with open('pkl_update_log.txt', 'a') as f:
-        f.write(str(current_datetime) + '\n')
+    with open("pkl_update_log.txt", "a") as f:
+        f.write(str(current_datetime) + "\n")
     with open("docs.pkl", "rb") as f:
         docs = pickle.load(f)
 
 if docs is None:
     print("docs is None")
-    github_client = GithubClient(os.getenv("GITHUB_ACCESS_TOKEN"))
-    print(os.getenv("GITHUB_ACCESS_TOKEN"))
+    github_client = GithubClient(os.getenv("GITHUB_TOKEN"))
     loader = GithubRepositoryReader(
         github_client,
         owner="student-ops",
         repo="raspi_go_TE",
-        filter_directories=([""], GithubRepositoryReader.FilterType.INCLUDE),
+        filter_directories=(
+            ["gpt_index", "docs"],
+            GithubRepositoryReader.FilterType.INCLUDE,
+        ),
         filter_file_extensions=(
-            [".py", ".go",], GithubRepositoryReader.FilterType.INCLUDE),
+            [
+                ".py",
+                ".go",
+            ],
+            GithubRepositoryReader.FilterType.INCLUDE,
+        ),
         verbose=True,
         concurrent_requests=10,
     )
+    print(loader)
 
     docs = loader.load_data(branch="main")
 
