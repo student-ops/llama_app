@@ -22,7 +22,7 @@ if docs is None:
         owner =                  "student-ops",
         repo =                   "raspi_go_TE",
         filter_directories =     (["python","go_serial"], GithubRepositoryReader.FilterType.INCLUDE),
-        filter_file_extensions = ([".py",".go"], GithubRepositoryReader.FilterType.INCLUDE),
+        filter_file_extensions = ([".py",".go",".md"], GithubRepositoryReader.FilterType.INCLUDE),
         verbose =                True,
         concurrent_requests =    10,
     )

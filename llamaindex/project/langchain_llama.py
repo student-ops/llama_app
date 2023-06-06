@@ -84,5 +84,5 @@ agent_chain = initialize_agent(
     suffix=suffix,
     verbose=True,
 )
-string = "このgithubレポについて簡単に説明して"
-agent_chain.run(input=string)
+string = "explain aobut what go program do in this repository"
+print(agent_chain.run(input=string))
